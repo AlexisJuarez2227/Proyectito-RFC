@@ -7,7 +7,7 @@ function App() {
   const [isValid, setIsValid] = useState(false);
 
   const validaRfc = (rfc) => {
-    const pattern = /^M[AML]{3}$/i;
+    const pattern = /^A[EJJ]{3}$/i;
     return pattern.test(rfc);
   };
 
@@ -16,33 +16,37 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white text-center p-10 rounded shadow-md w-90">
-        <h1 className="text-3xl font-bold mb-4">Digite la combinacion del siguiente RFC: MAML</h1>
-        <input
-          type="text"
-          value={rfc}
-          onChange={(e) => setRfc(e.target.value)} // Cuando el valor del input cambia, actualiza el estado 'rfc'
-          className="w-full p-2 border border-gray-300 rounded mb-4"
-        />
-        <button
-          onClick={handleValidate} // Cuando se hace clic en el botón, valida el RFC
-          className="w-full bg-blue-500 text-white p-2 rounded"
-        >
-          Validar
-        </button>
-        <div className="mt-4 text-center text-lg">
-          {isValid ? (
-            <p className="text-green-500">RFC válido</p>
-          ) : (
-            <p className="text-red-500">RFC inválido</p>
-          )}
-        </div>
-        <div className="mt-4">
-          <Automata rfc={rfc} /> {/* Aquí se utiliza el componente Automata, pasando el estado 'rfc' como prop */}
-        </div>
+<div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+  <div className="bg-white p-8 rounded-lg shadow-xl border-4 border-yellow-400 w-3/4 lg:w-1/2">
+    <h1 className="text-3xl font-bold text-center text-yellow-400 mb-8">Validacion de RFC</h1>
+    <div className="flex flex-col items-center">
+      <label className="text-lg mb-4 text-gray-700">Digite la combinacion del siguiente RFC: AEJJ</label>
+      <input
+        type="text"
+        value={rfc}
+        onChange={(e) => setRfc(e.target.value)}
+        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 bg-gray-100 text-gray-800 mb-6"
+      />
+      <button
+        onClick={handleValidate}
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition duration-300 ease-in-out focus:outline-none"
+      >
+        Validar
+      </button>
+      <div className="mt-6 text-lg">
+        {isValid ? (
+          <p className="text-green-500">RFC válido</p>
+        ) : (
+          <p className="text-red-500">RFC inválido</p>
+        )}
+      </div>
+      <div className="mt-6">
+        <Automata rfc={rfc} />
       </div>
     </div>
+  </div>
+</div>
+
   );
 }
 
